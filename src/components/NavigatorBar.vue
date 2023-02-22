@@ -13,15 +13,23 @@ const navigatorBarSwitch = () => {
     lastPe = pe
 
     if (pe > 0.85) {
-      navigatorBarElement?.style.setProperty("--bg-color",
-          `rgba(${255 * Math.pow(pe, 0.33)}, ${255 * Math.pow(pe, 0.33)}, ${255 * Math.pow(pe, 0.26)}, ${pe * 8})`)
-      navigatorBarElement?.style.setProperty("--text-color",
-          `rgb(${255 * (1 - pe)}, ${255 * (1 - pe)}, ${255 * (1 - pe)})`)
-      navigatorBarElement?.classList.add("navigatorBar-shadow")
+      navigatorBarElement?.style.setProperty("box-shadow", "var(--shadow-color) 0 8px 20px")
+
+      if (document.documentElement.getAttribute("data-theme") === "light") {
+        navigatorBarElement?.style.setProperty("background-color",
+            `rgba(${255 * Math.pow(pe, 0.33)}, ${255 * Math.pow(pe, 0.33)}, ${255 * Math.pow(pe, 0.26)}, ${pe * 8})`)
+        navigatorBarElement?.style.setProperty("color",
+            `rgb(${255 - 226 * pe}, ${255 - 226 * pe}, ${255 - 226 * pe})`)
+      } else {
+        navigatorBarElement?.style.setProperty("background-color",
+            `rgba(${35 * Math.pow(pe, 0.33)}, ${35 * Math.pow(pe, 0.33)}, ${35 * Math.pow(pe, 0.26)}, ${pe * 8})`)
+        navigatorBarElement?.style.setProperty("color",
+            `rgb(${255 * pe}, ${255 * pe}, ${255 * pe})`)
+      }
     } else {
-      navigatorBarElement?.style.setProperty("--bg-color", 'transparent')
-      navigatorBarElement?.style.setProperty("--text-color", '#ffffff')
-      navigatorBarElement?.classList.remove("navigatorBar-shadow")
+      navigatorBarElement?.style.setProperty("background-color", 'transparent')
+      navigatorBarElement?.style.setProperty("color", '#ffffff')
+      navigatorBarElement?.style.setProperty("box-shadow", "transparent 0 8px 20px")
     }
   })
 }
@@ -29,28 +37,55 @@ const navigatorBarSwitch = () => {
 const goElementById = (id: string) => {
   const element = document.getElementById(id)
   if (element) {
-    element.scrollIntoView({ behavior: "smooth" })
+    element.scrollIntoView({behavior: "smooth"})
   }
 }
 
 onMounted(() => {
   navigatorBarElement = document.getElementById("navigatorBar")
   navigatorBarSwitch()
+
 });
 
+interface NavigatorBarLinkItem {
+  name: string;
+  id: string;
+}
 
+const navigatorBarLinkList: NavigatorBarLinkItem[] = [
+  {name: "首页", id: "abc"},
+  {name: "关于", id: "abc"},
+  {name: "教育", id: "abc"},
+  {name: "日志", id: "abc"},
+];
 
-const test = () => {
-  console.log(navigatorBarElement);
+const themeSwitch = () => {
+  document.documentElement.setAttribute("data-theme",
+      document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light")
+
+  if (window.scrollY / window.innerHeight > 0.85) {
+    navigatorBarElement?.style.setProperty("background-color",
+        document.documentElement.getAttribute("data-theme") === "light" ? "#ffffff" : "#262626")
+    navigatorBarElement?.style.setProperty("color",
+        document.documentElement.getAttribute("data-theme") === "light" ? "#1a1a1a" : "#ffffff")
+  }
 };
 </script>
 
 <template>
   <div id="navigatorBar">
-    <div style="display: flex; align-items: center; height: 82px">
-      <span id="navLogoImage"></span>
-      <span id="navLogoText" @click="goElementById('abc')">QQK</span>
+    <!--    <span id="navigatorLogoImage"></span>-->
+    <!--    <span id="navigatorLogoText" @click="goElementById('abc')">QQK</span>-->
+
+    <img id="navigatorLogoImage" src="/QQK-LOGO.svg" alt="logo image">
+
+    <div id="navigatorBarLinkBox">
+      <span class="navigatorBarLink" v-for="i in navigatorBarLinkList" :key="i.id" @click="goElementById(i.id)">
+        {{ i.name }}
+      </span>
     </div>
+
+    <el-button @click="themeSwitch">测试</el-button>
   </div>
 </template>
 
@@ -62,38 +97,57 @@ export default {
 
 <style scoped>
 #navigatorBar {
-  --text-color: #ffffff;
-  --bg-color: transparent;
+  display: flex;
+  align-items: center;
 
   width: 100vw;
   height: 82px;
-  background: var(--bg-color);
-  color: var(--text-color);
 
-  transition: all 0.25s;
+  box-shadow: transparent 0 8px 20px;
 
   position: fixed;
   top: 0;
+
+  transition: box-shadow 0.2s, background-color 0.2s;
 }
 
-.navigatorBar-shadow {
-  box-shadow: rgba(149, 157, 165, 0.2) 0 16px 24px;
-}
-
-#navLogoImage {
+#navigatorLogoImage {
   width: 64px;
   height: 64px;
-  background: url("/test.svg") center;
-  background-size: cover;
-  margin-top: -4px;
-  /*background-color: #304455;*/
   margin-left: 200px;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-#navLogoText {
-  /*font-family: , sans-serif;*/
+#navigatorLogoText {
+  font-family: 上首至尊书法体, sans-serif;
   font-size: 32px;
   font-weight: 600;
   margin-left: 16px;
+}
+
+#navigatorBarLinkBox {
+  margin-left: auto;
+  margin-right: 200px;
+  white-space: nowrap;
+}
+
+.navigatorBarLink {
+  font-size: 18px;
+  font-weight: normal;
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  display: inline-block;
+  text-align: center;
+  width: 96px;
+  height: 48px;
+  line-height: 48px;
+}
+
+.navigatorBarLink:hover {
+  /*color: #9AD7FF;*/
+  /*background-color: #304455;*/
 }
 </style>
