@@ -2,22 +2,26 @@
 import MainPage      from './components/MainPage.vue'
 import { onMounted } from "vue";
 
-onMounted(() => {
-  const theme = localStorage.getItem("theme")
-  if (theme) {
-    document.documentElement.setAttribute("data-theme", theme)
-  } else {
-    document.documentElement.setAttribute("data-theme", "light")
+const themeInit = () => {
+  let theme = localStorage.getItem("theme")
+  if (theme === null) {
+    localStorage.setItem("theme", "light")
+    theme = "light"
   }
+  document.documentElement.setAttribute("data-theme", theme)
+}
+
+onMounted(() => {
+  themeInit()
+
 })
 </script>
 
 <template>
-  <MainPage />
-  <div style="height: 100vh; background: #304455"></div>
+  <MainPage/>
+
+  <div style="height: 100vh; background: rgba(0, 0, 0, 0.5)"></div>
   <div style="height: 200vh; background: var(--background-color); transition: 0.2s" id="abc"></div>
-
-
 </template>
 
 <style>
@@ -34,13 +38,15 @@ onMounted(() => {
 }
 
 :root[data-theme="light"] {
+  --navigator-bar-background-color: #ffffff;
   --background-color: #ffffff;
   --text-color: #1a1a1a;
   --shadow-color: #e5e5e5;
 }
 
 :root[data-theme="dark"] {
-  --background-color: #262626;
+  --navigator-bar-background-color: #1D1D1D;
+  --background-color: #282828;
   --text-color: #ffffff;
   --shadow-color: #2a2a2a;
 }

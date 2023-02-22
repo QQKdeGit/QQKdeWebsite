@@ -1,31 +1,25 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref }       from "vue";
+import ThemeSwitch              from "./ThemeSwitch.vue";
+import { NavigatorBarLinkItem } from "../type/navigatorBar";
 
-let navigatorBarElement: HTMLElement | null
-const navigatorBarSwitch = () => {
-  let lastPe: number
+let navigatorBarElement: HTMLElement | null;
 
+const navigatorBarInit = () => {
+  navigatorBarElement = document.getElementById("navigatorBar")
+
+  if (window.scrollY / window.innerHeight < 0.85) {
+    navigatorBarElement?.style.setProperty("background-color", 'transparent')
+    navigatorBarElement?.style.setProperty("color", '#ffffff')
+  }
+}
+
+const navigatorBarListen = () => {
   window.addEventListener("scroll", () => {
-    let pe = window.scrollY / window.innerHeight
-
-    if (pe > 1) pe = 1
-    if (lastPe === pe) return
-    lastPe = pe
-
-    if (pe > 0.85) {
+    if (window.scrollY / window.innerHeight > 0.85) {
       navigatorBarElement?.style.setProperty("box-shadow", "var(--shadow-color) 0 8px 20px")
-
-      if (document.documentElement.getAttribute("data-theme") === "light") {
-        navigatorBarElement?.style.setProperty("background-color",
-            `rgba(${255 * Math.pow(pe, 0.33)}, ${255 * Math.pow(pe, 0.33)}, ${255 * Math.pow(pe, 0.26)}, ${pe * 8})`)
-        navigatorBarElement?.style.setProperty("color",
-            `rgb(${255 - 226 * pe}, ${255 - 226 * pe}, ${255 - 226 * pe})`)
-      } else {
-        navigatorBarElement?.style.setProperty("background-color",
-            `rgba(${35 * Math.pow(pe, 0.33)}, ${35 * Math.pow(pe, 0.33)}, ${35 * Math.pow(pe, 0.26)}, ${pe * 8})`)
-        navigatorBarElement?.style.setProperty("color",
-            `rgb(${255 * pe}, ${255 * pe}, ${255 * pe})`)
-      }
+      navigatorBarElement?.style.setProperty("background-color", "var(--navigator-bar-background-color)")
+      navigatorBarElement?.style.setProperty("color", "var(--text-color)")
     } else {
       navigatorBarElement?.style.setProperty("background-color", 'transparent')
       navigatorBarElement?.style.setProperty("color", '#ffffff')
@@ -42,15 +36,10 @@ const goElementById = (id: string) => {
 }
 
 onMounted(() => {
-  navigatorBarElement = document.getElementById("navigatorBar")
-  navigatorBarSwitch()
+  navigatorBarInit()
+  navigatorBarListen()
 
 });
-
-interface NavigatorBarLinkItem {
-  name: string;
-  id: string;
-}
 
 const navigatorBarLinkList: NavigatorBarLinkItem[] = [
   {name: "首页", id: "abc"},
@@ -59,17 +48,7 @@ const navigatorBarLinkList: NavigatorBarLinkItem[] = [
   {name: "日志", id: "abc"},
 ];
 
-const themeSwitch = () => {
-  document.documentElement.setAttribute("data-theme",
-      document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light")
 
-  if (window.scrollY / window.innerHeight > 0.85) {
-    navigatorBarElement?.style.setProperty("background-color",
-        document.documentElement.getAttribute("data-theme") === "light" ? "#ffffff" : "#262626")
-    navigatorBarElement?.style.setProperty("color",
-        document.documentElement.getAttribute("data-theme") === "light" ? "#1a1a1a" : "#ffffff")
-  }
-};
 </script>
 
 <template>
@@ -85,7 +64,7 @@ const themeSwitch = () => {
       </span>
     </div>
 
-    <el-button @click="themeSwitch">测试</el-button>
+    <ThemeSwitch style="margin-right: 200px"/>
   </div>
 </template>
 
@@ -128,7 +107,7 @@ export default {
 
 #navigatorBarLinkBox {
   margin-left: auto;
-  margin-right: 200px;
+  margin-right: 48px;
   white-space: nowrap;
 }
 
