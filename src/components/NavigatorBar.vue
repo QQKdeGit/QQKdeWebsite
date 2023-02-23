@@ -12,6 +12,10 @@ const navigatorBarInit = () => {
     navigatorBarElement?.style.setProperty("background-color", 'transparent')
     navigatorBarElement?.style.setProperty("color", '#ffffff')
   }
+
+  let navigatorLogoImage = document.getElementById("navigatorLogoImage")
+  navigatorLogoImage?.setAttribute("src",
+      document.documentElement.getAttribute("data-theme") === "light" || null ? "/QQK-LOGO.svg" : "/QQK-LOGO-Plain.svg")
 }
 
 const navigatorBarListen = () => {

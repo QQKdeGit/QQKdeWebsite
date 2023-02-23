@@ -21,7 +21,7 @@ const themeSwitch = () => {
     element?.setAttribute("data-theme", element.getAttribute("data-theme") === "light" ? "dark" : "light")
   })
 
-  localStorage.setItem("theme", document.documentElement.getAttribute("data-theme"))
+  localStorage.setItem("theme", document.documentElement.getAttribute("data-theme") || "light")
 };
 </script>
 
