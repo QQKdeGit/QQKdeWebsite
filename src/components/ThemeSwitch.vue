@@ -34,36 +34,38 @@ export default {
   position: relative;
   cursor: pointer;
 
-  height: 30px;
+  height: 26px;
   width: 61px;
-  border-radius: 28px;
+  border-radius: 26px;
 
   transition: all 0.2s;
 }
 
 #theme-toggle-box[data-theme="light"] {
-  box-shadow: inset 0 0 0 2px #00000020;
+  /*box-shadow: inset 0 0 0 2px #00000020;*/
+  border: 2px solid #00000020;
 }
 
 #theme-toggle-box[data-theme="dark"] {
-  box-shadow: inset 0 0 0 2px #4B4D4E;
+  /*box-shadow: inset 0 0 0 2px #4B4D4E;*/
+  border: 2px solid #4B4D4E;
 }
 
 #sun-icon-wrapper {
   position: absolute;
-  transform: translate(8px, 4px);
+  transform: translate(8px, 2px);
   z-index: 0;
 }
 
 #moon-icon-wrapper {
   position: absolute;
-  transform: translate(40px, 4px);
+  transform: translate(40px, 2px);
   z-index: 0;
 }
 
 #theme-toggle-button {
   position: absolute;
-  transform: translate(6px, 5px);
+  transform: translate(6px, 3px);
 
   height: 20px;
   width: 20px;
@@ -76,13 +78,13 @@ export default {
 #theme-toggle-button[data-theme="light"] {
   background-color: #FFECCF;
   box-shadow: inset 0 0 0 3px #FFBB52;
-  transform: translate(35px, 5px);
+  transform: translate(35px, 3px);
 }
 
 #theme-toggle-button[data-theme="dark"] {
   background-color: #9AD7FF;
   box-shadow: inset 0 0 0 3px #45A6F7;
-  transform: translate(6px, 5px);
+  transform: translate(6px, 3px);
 }
 
 #sun-icon {
