@@ -14,3 +14,9 @@ export interface NavigatorBarLinkItem {
   name: string;
   id: string;
 }
+
+// const confRef = ref(configuration);
+// <div :data-theme="confRef.theme"/>
+export const configuration = {
+  theme: "light",
+}

@@ -1,45 +1,31 @@
 <script setup lang="ts">
-let theme : string | null = localStorage.getItem("theme")
+import { ref } from "vue";
+import { configuration }     from "../type/navigatorBar";
 
-const switchElementList: string[] = [
-  "theme-toggle-box",
-  "theme-toggle-button",
-  "sun-icon",
-  "moon-icon",
-]
+const confRef = ref(configuration)
 
 const themeSwitch = () => {
-  document.documentElement.setAttribute("data-theme",
-      document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light")
-
-  let navigatorLogoImage = document.getElementById("navigatorLogoImage")
-  navigatorLogoImage?.setAttribute("src",
-      document.documentElement.getAttribute("data-theme") === "light" || null ? "/QQK-LOGO.svg" : "/QQK-LOGO-Plain.svg")
-
-  switchElementList.forEach((elementId) => {
-    let element = document.getElementById(elementId)
-    element?.setAttribute("data-theme", element.getAttribute("data-theme") === "light" ? "dark" : "light")
-  })
-
-  localStorage.setItem("theme", document.documentElement.getAttribute("data-theme") || "light")
+  confRef.value.theme = confRef.value.theme === "light"? "dark" : "light"
+  document.documentElement.setAttribute("data-theme", confRef.value.theme)
+  localStorage.setItem("theme", confRef.value.theme)
 };
 </script>
 
 <template>
-  <div id="theme-toggle-box" @click="themeSwitch" :data-theme="theme">
+  <div id="theme-toggle-box" @click="themeSwitch" :data-theme="confRef.theme">
     <div id="sun-icon-wrapper">
-      <font-awesome-icon icon="fa-solid fa-sun" id="sun-icon" :data-theme="theme"/>
+      <font-awesome-icon icon="fa-solid fa-sun" id="sun-icon" :data-theme="confRef.theme"/>
     </div>
-    <div id="theme-toggle-button" :data-theme="theme"></div>
+    <div id="theme-toggle-button" :data-theme="confRef.theme"></div>
     <div id="moon-icon-wrapper">
-      <font-awesome-icon icon="fa-solid fa-moon" id="moon-icon" :data-theme="theme"/>
+      <font-awesome-icon icon="fa-solid fa-moon" id="moon-icon" :data-theme="confRef.theme"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 export default {
-  name: "ThemeSwitch"
+  name: "ThemeSwitch",
 }
 </script>
 
@@ -52,7 +38,7 @@ export default {
   width: 61px;
   border-radius: 28px;
 
-  transition: all 0.25s;
+  transition: all 0.2s;
 }
 
 #theme-toggle-box[data-theme="light"] {
@@ -102,7 +88,7 @@ export default {
 #sun-icon {
   font-size: 16px;
   color: #FFBB52;
-  transition: 0.25s;
+  transition: 0.2s;
 }
 
 #sun-icon[data-theme="light"] {
@@ -116,7 +102,7 @@ export default {
 #moon-icon {
   font-size: 16px;
   color: #45A6F7;
-  transition: 0.25s;
+  transition: 0.2s;
 }
 
 #moon-icon[data-theme="light"] {

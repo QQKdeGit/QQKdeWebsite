@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref }       from "vue";
+import { onMounted }            from "vue";
 import ThemeSwitch              from "./ThemeSwitch.vue";
 import { NavigatorBarLinkItem } from "../type/navigatorBar";
 
@@ -9,13 +9,14 @@ const navigatorBarInit = () => {
   navigatorBarElement = document.getElementById("navigatorBar")
 
   if (window.scrollY / window.innerHeight < 0.85) {
+    navigatorBarElement?.style.setProperty("box-shadow", "transparent 0 8px 20px")
     navigatorBarElement?.style.setProperty("background-color", 'transparent')
     navigatorBarElement?.style.setProperty("color", '#ffffff')
+  } else {
+    navigatorBarElement?.style.setProperty("box-shadow", "var(--shadow-color) 0 8px 20px")
+    navigatorBarElement?.style.setProperty("background-color", "var(--navigator-bar-background-color)")
+    navigatorBarElement?.style.setProperty("color", "var(--text-color)")
   }
-
-  let navigatorLogoImage = document.getElementById("navigatorLogoImage")
-  navigatorLogoImage?.setAttribute("src",
-      document.documentElement.getAttribute("data-theme") === "light" || null ? "/QQK-LOGO.svg" : "/QQK-LOGO-Plain.svg")
 }
 
 const navigatorBarListen = () => {
@@ -92,6 +93,7 @@ export default {
   top: 0;
 
   transition: box-shadow 0.2s, background-color 0.2s;
+  z-index: 2;
 }
 
 #navigatorLogoImage {
@@ -120,7 +122,7 @@ export default {
   font-weight: normal;
   cursor: pointer;
 
-  transition: all 0.2s;
+  transition: all 0.2s, color 0s;
 
   display: inline-block;
   text-align: center;

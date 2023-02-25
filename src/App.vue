@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import MainPage      from './components/MainPage.vue'
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
+import { configuration }     from "./type/navigatorBar";
+
+const confRef = ref(configuration)
 
 const themeInit = () => {
-  let theme = localStorage.getItem("theme")
-  if (theme === null) {
-    localStorage.setItem("theme", "light")
-    theme = "light"
-  }
-  document.documentElement.setAttribute("data-theme", theme)
+  let localTheme = localStorage.getItem("theme")
+
+  if (localTheme === null) localStorage.setItem("theme", "light")
+  else confRef.value.theme = localTheme
+
+  document.documentElement.setAttribute("data-theme", confRef.value.theme)
 }
 
 onMounted(() => {
@@ -20,8 +23,6 @@ onMounted(() => {
 <template>
   <MainPage/>
 
-  <div style="height: 100vh; background: rgba(0, 0, 0, 0.5)"></div>
-  <div style="height: 200vh; background: var(--background-color); transition: 0.2s" id="abc"></div>
 </template>
 
 <style>
