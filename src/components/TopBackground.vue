@@ -1,19 +1,80 @@
 <script setup lang="ts">
-import { ref }           from "vue";
-import { configuration } from "../type/navigatorBar";
+import { onMounted, ref }   from "vue";
+import { configuration }    from "../types/configuration";
+import ScrollReveal         from "scrollreveal";
+import { English, Chinese } from "../i18n/i18n";
 
 const confRef = ref(configuration)
 
+const goElementById = (id: string) => {
+  const element = document.getElementById(id)
+  if (element) {
+    element.scrollIntoView({behavior: "smooth"} || 'smooth')
+  }
+}
+
+const languageSwitch = () => {
+  if (confRef.value.language === "zh-CN") {
+    confRef.value.words    = English
+    confRef.value.language = "en-US"
+  } else {
+    confRef.value.words    = Chinese
+    confRef.value.language = "zh-CN"
+  }
+}
+
+onMounted(() => {
+  ScrollReveal().reveal('#top-background-logo', {
+    distance: '40px', origin: 'bottom', duration: 1500, afterReveal: () => {
+      let barElement = document.getElementById("top-background-bar")
+      if (barElement) {
+        barElement.style.setProperty("width", "240px")
+      }
+    }
+  })
+
+  ScrollReveal().reveal('#top-background-title', {distance: '60px', origin: 'bottom', duration: 2000, delay: 100})
+
+  ScrollReveal().reveal('.top-background-subtitle', {
+    distance: '40px',
+    origin: 'bottom',
+    duration: 2000,
+    delay: 200
+  })
+})
 </script>
 
 <template>
   <div id="top-background">
     <div id="top-background-sky" :data-theme="confRef.theme"></div>
     <div id="top-background-stars" :data-theme="confRef.theme"></div>
-    <!--    <div id="sun"></div>-->
 
+    <div id="top-background-content">
+      <img id="top-background-logo" :src="confRef.theme === 'light' ? '/QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'"
+           alt="top background logo">
+
+      <div id="top-background-bar" :data-theme="confRef.theme"></div>
+
+      <div id="top-background-title" :data-theme="confRef.theme" @click="languageSwitch">
+        {{ confRef.words.top_background.title }}
+      </div>
+
+      <div class="top-background-subtitle" :data-theme="confRef.theme" v-if="confRef.isWrongTheme === 0">
+        {{ confRef.words.top_background.subtitle }}
+      </div>
+      <div class="top-background-subtitle" :data-theme="confRef.theme" v-else-if="confRef.isWrongTheme === 1">
+        {{ confRef.words.top_background.wrongDayTimeSubtitle }}
+      </div>
+      <div class="top-background-subtitle" :data-theme="confRef.theme" v-else>
+        {{ confRef.words.top_background.wrongNightTimeSubtitle }}
+      </div>
+
+      <div id="top-background-angle-down-box" @click="goElementById('about')">
+        <div id="top-background-angle-down-text">探索</div>
+        <font-awesome-icon id="top-background-angle-down-icon" icon="fa-solid fa-chevron-down"/>
+      </div>
+    </div>
   </div>
-
 </template>
 
 <script lang="ts">
@@ -33,7 +94,7 @@ export default {
   width: 100%;
   height: 100%;
 
-  background: linear-gradient(180deg, #000023, #151b6b, #2064af, #268ac9, #6DD5FA, #FFFFFF);
+  background: linear-gradient(180deg, #000023, #0f133d, #151b6b, #2064af, #2F80ED, #56CCF2);
   background-size: 100% 300%;
   background-position: 0 90%;
 
@@ -82,20 +143,98 @@ export default {
 /*  }*/
 /*}*/
 
-#sun {
+#top-background-content {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 82px;
+  user-select: none;
 
-  width: 120px;
-  height: 120px;
-
-  border-radius: 50%;
-  backdrop-filter: blur(20px);
-
-  background: -webkit-radial-gradient(circle, rgba(242, 248, 247, 1) 0%, rgba(249, 249, 28, 1) 3%, rgba(247, 214, 46, 1) 8%, rgba(248, 200, 95, 1) 12%, rgba(201, 165, 132, 1) 50%, rgba(108, 171, 247, 1) 80%);
-  /*background: -moz-radial-gradient(circle, rgba(242,248,247,1) 0%,rgba(249,249,28,1) 3%,rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%,rgba(201,165,132,1) 30%,rgba(115,130,133,1) 51%,rgba(46,97,122,1) 85%,rgba(24,75,106,1) 100%);*/
-  /*background: -ms-radial-gradient(circle, rgba(242,248,247,1) 0%,rgba(249,249,28,1) 3%,rgba(247,214,46,1) 8%, rgba(248,200,95,1) 12%,rgba(201,165,132,1) 30%,rgba(115,130,133,1) 51%,rgba(46,97,122,1) 85%,rgba(24,75,106,1) 100%);*/
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
+#top-background-logo {
+  width: 240px;
+  height: 240px;
+
+  margin-top: 4%;
+}
+
+#top-background-bar {
+  width: 0;
+  height: 6px;
+  border-radius: 3px;
+  margin-top: 4px;
+  background: var(--theme-color-active);
+  transition: all 0.5s;
+  min-height: 6px;
+}
+
+#top-background-title {
+  font-size: 72px;
+  font-weight: 700;
+  margin-top: 32px;
+  -webkit-text-fill-color: transparent;
+}
+
+#top-background-title[data-theme="light"] {
+  background: linear-gradient(135deg, #8dc6f6, #f2fcfe);
+  /* background-clip must be after background */
+  -webkit-background-clip: text;
+}
+
+#top-background-title[data-theme="dark"] {
+  background: var(--theme-color-linear-gradient);
+  -webkit-background-clip: text;
+}
+
+.top-background-subtitle {
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 8px;
+  color: #ffffffe0;
+  letter-spacing: 0.05em;
+}
+
+#top-background-angle-down-box {
+  text-align: center;
+  margin-top: 10%;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#top-background-angle-down-box:hover {
+  color: var(--theme-color-active)
+}
+
+#top-background-angle-down-text {
+  font-size: 24px;
+}
+
+#top-background-angle-down-icon {
+  animation: fade_move_down 1.5s infinite;
+  margin-top: 8px;
+}
+
+@keyframes fade_move_down {
+  0% {
+    font-size: 32px;
+    transform: translate(0, -10px);
+    opacity: 0;
+  }
+  50% {
+    font-size: 48px;
+    opacity: 1;
+  }
+  100% {
+    font-size: 32px;
+    transform: translate(0, 30px);
+    opacity: 0;
+  }
+}
 </style>

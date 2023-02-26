@@ -1,21 +1,18 @@
 <script setup lang="ts">
 import NavigatorBar from "./NavigatorBar.vue";
-
-import ScrollReveal  from "scrollreveal";
-import { onMounted } from "vue";
 import TopBackground from "./TopBackground.vue";
-
-onMounted(() => {
-  ScrollReveal().reveal('#my-element', {distance: '100px', origin: 'left', duration: 1000})
-})
 </script>
 
 <template>
-  <NavigatorBar />
+  <div>
+    <NavigatorBar/>
 
-  <TopBackground />
+    <TopBackground/>
 
-  <div style="height: 1000px; width: 100%; background-color: var(--background-color); transition: all 0.25s"></div>
+    <div id="about" style="height: 100vh; width: 100%; background-color: var(--background-color); transition: all 0.25s">
+      <!--    <h1>Hello World</h1>-->
+    </div>
+  </div>
 </template>
 
 <script lang="ts">

@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { onMounted }            from "vue";
+import { onMounted, ref }       from "vue";
 import ThemeSwitch              from "./ThemeSwitch.vue";
-import { NavigatorBarLinkItem } from "../type/navigatorBar";
+import { NavigatorBarLinkItem } from "../types/navigatorBar";
+import { configuration }        from "../types/configuration";
+
+const confRef = ref(configuration)
 
 let navigatorBarElement: HTMLElement | null;
 
@@ -36,24 +39,21 @@ const navigatorBarListen = () => {
 const goElementById = (id: string) => {
   const element = document.getElementById(id)
   if (element) {
-    element.scrollIntoView({behavior: "smooth"})
+    element.scrollIntoView({behavior: "smooth"} || 'smooth')
   }
 }
 
 onMounted(() => {
   navigatorBarInit()
   navigatorBarListen()
-
 });
 
 const navigatorBarLinkList: NavigatorBarLinkItem[] = [
-  {name: "首页", id: "abc"},
-  {name: "关于", id: "abc"},
+  {name: "首页", id: "top-background"},
+  {name: "关于", id: "about"},
   {name: "教育", id: "abc"},
   {name: "日志", id: "abc"},
 ];
-
-
 </script>
 
 <template>
@@ -61,7 +61,8 @@ const navigatorBarLinkList: NavigatorBarLinkItem[] = [
     <!--    <span id="navigatorLogoImage"></span>-->
     <!--    <span id="navigatorLogoText" @click="goElementById('abc')">QQK</span>-->
 
-    <img id="navigatorLogoImage" src="/QQK-LOGO.svg" alt="logo image">
+    <img id="navigatorLogoImage" :src="confRef.theme === 'light' ? '/QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'" alt="logo image">
+
 
     <div id="navigatorBarLinkBox">
       <span class="navigatorBarLink" v-for="i in navigatorBarLinkList" :key="i.id" @click="goElementById(i.id)">
@@ -69,7 +70,7 @@ const navigatorBarLinkList: NavigatorBarLinkItem[] = [
       </span>
     </div>
 
-    <ThemeSwitch style="margin-right: 200px"/>
+    <ThemeSwitch style="margin-right: 160px"/>
   </div>
 </template>
 
@@ -118,21 +119,43 @@ export default {
 }
 
 .navigatorBarLink {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
   cursor: pointer;
 
   transition: all 0.2s, color 0s;
 
   display: inline-block;
+  position: relative;
   text-align: center;
-  width: 96px;
+  width: 84px;
   height: 48px;
   line-height: 48px;
+
+  border-radius: 6px;
+  margin-left: 16px;
+
+  user-select: none;
 }
 
 .navigatorBarLink:hover {
-  /*color: #9AD7FF;*/
-  /*background-color: #304455;*/
+  background-color: var(--navigator-bar-link-background-color);
+}
+
+.navigatorBarLink::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  bottom: 4px;
+
+  width: 0;
+  height: 4px;
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+
+.navigatorBarLink:hover::before {
+  width: 52px;
+  background: var(--theme-color-linear-gradient);
 }
 </style>

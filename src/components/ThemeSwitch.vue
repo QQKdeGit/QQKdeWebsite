@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { configuration }     from "../type/navigatorBar";
+import { ref }           from "vue";
+import { configuration } from "../types/configuration";
 
 const confRef = ref(configuration)
 
@@ -8,6 +8,12 @@ const themeSwitch = () => {
   confRef.value.theme = confRef.value.theme === "light"? "dark" : "light"
   document.documentElement.setAttribute("data-theme", confRef.value.theme)
   localStorage.setItem("theme", confRef.value.theme)
+
+  let localHour = new Date().getHours()
+
+  if (localHour >= 6 && localHour < 18 && confRef.value.theme === "dark") confRef.value.isWrongTheme = 1
+  else if ((localHour >= 18 || localHour < 6) && confRef.value.theme === "light") confRef.value.isWrongTheme = 2
+  else confRef.value.isWrongTheme = 0
 };
 </script>
 
@@ -36,18 +42,18 @@ export default {
 
   height: 26px;
   width: 61px;
+  min-width: 61px;
+
   border-radius: 26px;
 
   transition: all 0.2s;
 }
 
 #theme-toggle-box[data-theme="light"] {
-  /*box-shadow: inset 0 0 0 2px #00000020;*/
   border: 2px solid #00000020;
 }
 
 #theme-toggle-box[data-theme="dark"] {
-  /*box-shadow: inset 0 0 0 2px #4B4D4E;*/
   border: 2px solid #4B4D4E;
 }
 
