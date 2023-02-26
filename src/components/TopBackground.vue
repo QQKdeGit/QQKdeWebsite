@@ -27,9 +27,10 @@ onMounted(() => {
   ScrollReveal().reveal('#top-background-logo', {
     distance: '40px', origin: 'bottom', duration: 1500, afterReveal: () => {
       let barElement = document.getElementById("top-background-bar")
-      if (barElement) {
-        barElement.style.setProperty("width", "240px")
-      }
+      if (barElement) barElement.style.setProperty("width", "240px")
+
+      let iconElement = document.getElementById("top-background-angle-down-icon")
+      if (iconElement) iconElement.classList.add("top-background-angle-down-icon-animation")
     }
   })
 
@@ -40,6 +41,13 @@ onMounted(() => {
     origin: 'bottom',
     duration: 2000,
     delay: 200
+  })
+
+  ScrollReveal().reveal('#top-background-angle-down-text', {
+    distance: '40px',
+    origin: 'bottom',
+    duration: 2000,
+    delay: 300
   })
 })
 </script>
@@ -218,22 +226,24 @@ export default {
 }
 
 #top-background-angle-down-icon {
-  animation: fade_move_down 1.5s infinite;
+  font-size: 32px;
   margin-top: 16px;
+  opacity: 0;
+}
+
+.top-background-angle-down-icon-animation {
+  animation: fade_move_down 2s infinite;
 }
 
 @keyframes fade_move_down {
   0% {
-    font-size: 32px;
     transform: translate(0, -10px);
     opacity: 0;
   }
   50% {
-    font-size: 48px;
     opacity: 1;
   }
   100% {
-    font-size: 32px;
     transform: translate(0, 30px);
     opacity: 0;
   }
