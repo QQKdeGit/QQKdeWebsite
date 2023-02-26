@@ -30,8 +30,6 @@ const languageInit = () => {
 const timeInit = () => {
   let localHour = new Date().getHours()
 
-  console.log(localHour)
-
   if (localHour >= 6 && localHour < 18 && confRef.value.theme === "dark") confRef.value.isWrongTheme = 1
   else if ((localHour >= 18 || localHour < 6) && confRef.value.theme === "light") confRef.value.isWrongTheme = 2
   else confRef.value.isWrongTheme = 0

@@ -70,7 +70,7 @@ onMounted(() => {
       </div>
 
       <div id="top-background-angle-down-box" @click="goElementById('about')">
-        <div id="top-background-angle-down-text">探索</div>
+        <div id="top-background-angle-down-text">{{ confRef.words.top_background.explore }}</div>
         <font-awesome-icon id="top-background-angle-down-icon" icon="fa-solid fa-chevron-down"/>
       </div>
     </div>
@@ -202,7 +202,7 @@ export default {
 
 #top-background-angle-down-box {
   text-align: center;
-  margin-top: 10%;
+  margin-top: 9%;
   color: #ffffff;
   cursor: pointer;
   transition: all 0.2s;
@@ -214,11 +214,12 @@ export default {
 
 #top-background-angle-down-text {
   font-size: 24px;
+  letter-spacing: 0.05em;
 }
 
 #top-background-angle-down-icon {
   animation: fade_move_down 1.5s infinite;
-  margin-top: 8px;
+  margin-top: 16px;
 }
 
 @keyframes fade_move_down {

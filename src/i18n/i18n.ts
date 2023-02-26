@@ -16,6 +16,7 @@ export interface LanguageObject {
     subtitle: string;
     wrongDayTimeSubtitle: string;
     wrongNightTimeSubtitle: string;
+    explore: string;
   }
 }
 
@@ -25,6 +26,7 @@ export const Chinese: LanguageObject = {
     subtitle: '欢迎来到QQK的个人网站',
     wrongDayTimeSubtitle: '为什么你在白天使用夜间主题呢？',
     wrongNightTimeSubtitle: '为什么你在夜晚使用白天主题呢？',
+    explore: '探索',
   }
 }
 
@@ -34,5 +36,6 @@ export const English: LanguageObject = {
     subtitle: 'Welcome to QQKdeWebsite',
     wrongDayTimeSubtitle: 'Why are you using dark theme in daytime?',
     wrongNightTimeSubtitle: 'Why are you using light theme in night?',
+    explore: 'Explore',
   }
 }
