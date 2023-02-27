@@ -25,7 +25,7 @@ const languageSwitch = () => {
 
 onMounted(() => {
   ScrollReveal().reveal('#top-background-logo', {
-    distance: '40px', origin: 'bottom', duration: 1500, afterReveal: () => {
+    distance: '60px', origin: 'bottom', duration: 1500, delay: 200, afterReveal: () => {
       let barElement = document.getElementById("top-background-bar")
       if (barElement) barElement.style.setProperty("width", "240px")
 
@@ -34,20 +34,20 @@ onMounted(() => {
     }
   })
 
-  ScrollReveal().reveal('#top-background-title', {distance: '60px', origin: 'bottom', duration: 2000, delay: 100})
+  ScrollReveal().reveal('#top-background-title', {distance: '60px', origin: 'bottom', duration: 2000, delay: 300})
 
   ScrollReveal().reveal('.top-background-subtitle', {
-    distance: '40px',
+    distance: '60px',
     origin: 'bottom',
     duration: 2000,
-    delay: 200
+    delay: 400
   })
 
   ScrollReveal().reveal('#top-background-angle-down-text', {
-    distance: '40px',
+    distance: '60px',
     origin: 'bottom',
     duration: 2000,
-    delay: 300
+    delay: 500
   })
 })
 </script>

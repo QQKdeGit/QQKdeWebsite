@@ -57,21 +57,26 @@ timeInit()
   --theme-color-active: #9AD7FF;
   --theme-color: #45A6F7;
   --theme-color-linear-gradient: linear-gradient(135deg, #1488CC, #45A6F7, #6dd0fa, #8dc6f6);
+  --theme-color-linear-gradient2: linear-gradient(135deg, #FC466B, #3F5EFB);
 }
 
 :root[data-theme="light"] {
   --navigator-bar-background-color: #ffffff;
   --background-color: #ffffff;
-  --text-color: #1a1a1a;
-  --shadow-color: #e5e5e5;
+  --background-interval-color: #F9F9F9;
+  --text-title-color: #333333;
+  --text-content-color: #444444;
+  --shadow-color: #eeeeee;
   --navigator-bar-link-background-color: rgba(0, 0, 0, 0.05);
 }
 
 :root[data-theme="dark"] {
   --navigator-bar-background-color: #1D1D1D;
   --background-color: #282828;
-  --text-color: #ffffff;
-  --shadow-color: #2a2a2a;
+  --background-interval-color: #1E1E1E;
+  --text-title-color: #ffffff;
+  --text-content-color: #ffffff;
+  --shadow-color: #1c1c1c;
   --navigator-bar-link-background-color: rgba(255, 255, 255, 0.1);
 }
 </style>

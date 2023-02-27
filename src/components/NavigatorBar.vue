@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref }       from "vue";
 import ThemeSwitch              from "./ThemeSwitch.vue";
-import { NavigatorBarLinkItem } from "../types/navigatorBar";
 import { configuration }        from "../types/configuration";
 
 const confRef = ref(configuration)
@@ -27,7 +26,7 @@ const navigatorBarListen = () => {
     if (window.scrollY / window.innerHeight > 0.85) {
       navigatorBarElement?.style.setProperty("box-shadow", "var(--shadow-color) 0 8px 20px")
       navigatorBarElement?.style.setProperty("background-color", "var(--navigator-bar-background-color)")
-      navigatorBarElement?.style.setProperty("color", "var(--text-color)")
+      navigatorBarElement?.style.setProperty("color", "var(--text-title-color)")
     } else {
       navigatorBarElement?.style.setProperty("background-color", 'transparent')
       navigatorBarElement?.style.setProperty("color", '#ffffff')
@@ -48,12 +47,12 @@ onMounted(() => {
   navigatorBarListen()
 });
 
-const navigatorBarLinkList: NavigatorBarLinkItem[] = [
-  {name: "首页", id: "top-background"},
-  {name: "关于", id: "about"},
-  {name: "教育", id: "abc"},
-  {name: "日志", id: "abc"},
-];
+const navigatorBarLinkMap = ref<{ [key: string]: string }>({
+  [confRef.value.words.navigator_bar.home]: "top-background",
+  [confRef.value.words.navigator_bar.about]: "about",
+  [confRef.value.words.navigator_bar.education]: "education",
+  [confRef.value.words.navigator_bar.log]: "abc",
+})
 </script>
 
 <template>
@@ -61,12 +60,14 @@ const navigatorBarLinkList: NavigatorBarLinkItem[] = [
     <!--    <span id="navigatorLogoImage"></span>-->
     <!--    <span id="navigatorLogoText" @click="goElementById('abc')">QQK</span>-->
 
-    <img id="navigatorLogoImage" :src="confRef.theme === 'light' ? '/QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'" alt="logo image">
+    <img id="navigatorLogoImage" :src="confRef.theme === 'light' ? '/QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'"
+         alt="logo image">
 
 
     <div id="navigatorBarLinkBox">
-      <span class="navigatorBarLink" v-for="i in navigatorBarLinkList" :key="i.id" @click="goElementById(i.id)">
-        {{ i.name }}
+      <span class="navigatorBarLink" v-for="i in confRef.words.navigator_bar" :key="navigatorBarLinkMap[i]"
+            @click="goElementById(navigatorBarLinkMap[i])">
+        {{ i }}
       </span>
     </div>
 
@@ -122,19 +123,15 @@ export default {
   font-size: 16px;
   font-weight: normal;
   cursor: pointer;
-
   transition: all 0.2s, color 0s;
-
   display: inline-block;
   position: relative;
   text-align: center;
-  width: 84px;
+  padding: 0 28px;
+  margin: 0 6px;
   height: 48px;
   line-height: 48px;
-
   border-radius: 6px;
-  margin-left: 16px;
-
   user-select: none;
 }
 
@@ -145,17 +142,17 @@ export default {
 .navigatorBarLink::before {
   content: '';
   position: absolute;
-  left: 16px;
+  left: 15%;
   bottom: 4px;
 
   width: 0;
   height: 4px;
   border-radius: 2px;
-  transition: all 0.25s;
+  transition: all 0.4s;
 }
 
 .navigatorBarLink:hover::before {
-  width: 52px;
+  width: 70%;
   background: var(--theme-color-linear-gradient);
 }
 </style>

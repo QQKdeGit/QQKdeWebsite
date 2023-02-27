@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import NavigatorBar from "./NavigatorBar.vue";
+import NavigatorBar  from "./NavigatorBar.vue";
 import TopBackground from "./TopBackground.vue";
+import About         from "./About.vue";
 </script>
 
 <template>
@@ -9,9 +10,9 @@ import TopBackground from "./TopBackground.vue";
 
     <TopBackground/>
 
-    <div id="about" style="height: 100vh; width: 100%; background-color: var(--background-color); transition: all 0.25s">
-      <!--    <h1>Hello World</h1>-->
-    </div>
+    <About/>
+
+    <div style="width: 100%; height: 100vh; background: var(--background-interval-color)" id="education"></div>
   </div>
 </template>
 
