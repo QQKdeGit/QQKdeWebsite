@@ -11,12 +11,10 @@
 //--------------------------------------------------------------------------
 
 export interface LanguageObject {
-  navigator_bar: {
-    home: string;
-    about: string;
-    education: string;
-    log: string;
-  }
+  navigator_bar: Array<{
+    name: string;
+    id: string;
+  }>
 
   top_background: {
     title: string;
@@ -32,18 +30,29 @@ export interface LanguageObject {
     meContent: Array<string>;
 
     webTitle: string;
-    webIntroduction: string;
-    webContent: string;
+    webContent: Array<string>;
   }
 }
 
 export const Chinese: LanguageObject = {
-  navigator_bar: {
-    home: '首页',
-    about: '关于',
-    education: '教育',
-    log: '日志',
-  },
+  navigator_bar: [
+    {
+      name: '首页',
+      id: 'top-background',
+    },
+    {
+      name: '关于',
+      id: 'about',
+    },
+    {
+      name: '教育',
+      id: 'education',
+    },
+    {
+      name: '联系',
+      id: 'contact',
+    },
+  ],
 
   top_background: {
     title: '循梦而行，向阳而生',
@@ -59,24 +68,42 @@ export const Chinese: LanguageObject = {
     meContent: [
       "🎓 一个即将毕业的北京邮电大学本科生",
       "🖥️ 一个距离 1000 粉丝还有 958 个的 B 站 UP 主",
-      "🧑‍ 一个想成为具有工匠精神程序员的人",
+      "🧑‍ 一个想成为具有工匠精神的程序员的人",
       "🎱 一个水平只有 0.5 档的台球爱好者",
       "🥳 一个喜欢整活的生活喜剧人",
       "🤯 一个每天不停实现自己想法的人",
     ],
     webTitle: '关于网站',
-    webIntroduction: '🌐 一个基于 Vue3 + TypeScript + Vite 的个人网站',
-    webContent: "一个使用 Vite + Vue3 + TypeScript一个使用 Vite + Vue3 + TypeScript一个使用 Vite + Vue3 + TypeScript一个使用 Vite + Vue3 + TypeScript",
+    webContent: [
+      "这是一个基于 Vue3 + Vite + TypeScript 的个人网站",
+      "并没有使用任何UI组件库（除了一些图标）",
+      "网站还提供了夜间模式和本地化的功能",
+      "并且已经在 Github 上开源",
+      "欢迎提出任何 issue 和 star",
+
+    ]
   }
 }
 
 export const English: LanguageObject = {
-  navigator_bar: {
-    home: 'Home',
-    about: 'About',
-    education: 'Education',
-    log: 'Log',
-  },
+  navigator_bar: [
+    {
+      name: 'Home',
+      id: 'top-background',
+    },
+    {
+      name: 'About',
+      id: 'about',
+    },
+    {
+      name: 'Education',
+      id: 'education',
+    },
+    {
+      name: 'Contact',
+      id: 'contact',
+    },
+  ],
 
   top_background: {
     title: 'Chase Aspirations, Embrace Radiance',
@@ -98,7 +125,12 @@ export const English: LanguageObject = {
       "🤯 A person who is constantly implementing his ideas",
     ],
     webTitle: 'About Website',
-    webIntroduction: '🌐 A personal website based on Vue3 + TypeScript + Vite',
-    webContent: "A website based on Vite + Vue3 + TypeScript",
+    webContent: [
+      "This is a personal website based on Vue3 + Vite + TypeScript",
+      "No UI component library is used (except for some icons)",
+      "The website also provides night mode and localization",
+      "And it has been open sourced on Github",
+      "Any issues and stars are appreciated",
+    ]
   }
 }

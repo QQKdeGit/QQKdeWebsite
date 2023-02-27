@@ -57,7 +57,7 @@ timeInit()
   --theme-color-active: #9AD7FF;
   --theme-color: #45A6F7;
   --theme-color-linear-gradient: linear-gradient(135deg, #1488CC, #45A6F7, #6dd0fa, #8dc6f6);
-  --theme-color-linear-gradient2: linear-gradient(135deg, #FC466B, #3F5EFB);
+  --theme-color-linear-gradient2: linear-gradient(135deg, #ef713b, #f59059, #facf4f, #ffe259);
 }
 
 :root[data-theme="light"] {

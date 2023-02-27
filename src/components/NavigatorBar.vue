@@ -46,13 +46,6 @@ onMounted(() => {
   navigatorBarInit()
   navigatorBarListen()
 });
-
-const navigatorBarLinkMap = ref<{ [key: string]: string }>({
-  [confRef.value.words.navigator_bar.home]: "top-background",
-  [confRef.value.words.navigator_bar.about]: "about",
-  [confRef.value.words.navigator_bar.education]: "education",
-  [confRef.value.words.navigator_bar.log]: "abc",
-})
 </script>
 
 <template>
@@ -63,11 +56,10 @@ const navigatorBarLinkMap = ref<{ [key: string]: string }>({
     <img id="navigatorLogoImage" :src="confRef.theme === 'light' ? '/QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'"
          alt="logo image">
 
-
     <div id="navigatorBarLinkBox">
-      <span class="navigatorBarLink" v-for="i in confRef.words.navigator_bar" :key="navigatorBarLinkMap[i]"
-            @click="goElementById(navigatorBarLinkMap[i])">
-        {{ i }}
+      <span class="navigatorBarLink" v-for="i in confRef.words.navigator_bar" :key="i.id"
+            @click="goElementById(i.id)">
+        {{ i.name }}
       </span>
     </div>
 
@@ -148,7 +140,7 @@ export default {
   width: 0;
   height: 4px;
   border-radius: 2px;
-  transition: all 0.4s;
+  transition: all 0.3s;
 }
 
 .navigatorBarLink:hover::before {

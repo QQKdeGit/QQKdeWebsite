@@ -7,19 +7,29 @@ const confRef = ref(configuration)
 
 onMounted(() => {
   ScrollReveal().reveal('#about-me, #about-me-bar', {distance: '60px', origin: 'left', duration: 2000, delay: 300})
+
   ScrollReveal().reveal('#about-me-image', {distance: '60px', origin: 'left', duration: 2000, delay: 400})
   ScrollReveal().reveal('#about-me-introduction', {distance: '60px', origin: 'right', duration: 2000, delay: 400})
-  ScrollReveal().reveal('.about-me-introduction-content', {distance: '60px', origin: 'right', duration: 2000, delay: 500, interval: 100})
+
+  ScrollReveal().reveal('.about-me-introduction-content', {distance: '60px', origin: 'right', duration: 2000, delay: 500, interval: 80})
+
+  ScrollReveal().reveal('#about-web, #about-web-bar', {distance: '60px', origin: 'left', duration: 2000, delay: 800})
+  ScrollReveal().reveal('.about-web-introduction-content', {distance: '60px', origin: 'right', duration: 2000, delay: 900, interval: 80})
+
+  ScrollReveal().reveal('#about-link-box', {distance: '60px', origin: 'right', duration: 2000, delay: 1280})
 })
 </script>
 
 <template>
   <div id="about">
-    <div id="about-me">{{ confRef.words.about.meTitle }}</div>
-    <div id="about-me-bar"></div>
-
+    <div>
+      <div id="about-me">{{ confRef.words.about.meTitle }}</div>
+    </div>
+    <div>
+      <div id="about-me-bar"></div>
+    </div>
     <div id="about-me-content">
-      <div style="display: flex; margin: 0 auto 0; column-gap: 64px">
+      <div style="display: flex; column-gap: 64px;">
         <img id="about-me-image" src="/QQK-Transparent-540.png" alt="about me image">
 
         <div>
@@ -34,12 +44,25 @@ onMounted(() => {
       </div>
     </div>
 
-    <div id="about-web">{{ confRef.words.about.webTitle }}</div>
-    <div id="about-web-bar"></div>
-    <p id="about-web-content">
-<!--      <p id="about-web-introduction">{{ confRef.words.about.webIntroduction }}</p>-->
-      {{ confRef.words.about.webContent }}
-    </p>
+    <div>
+      <div id="about-web">{{ confRef.words.about.webTitle }}</div>
+    </div>
+    <div>
+      <div id="about-web-bar"></div>
+    </div>
+    <div>
+      <div id="about-web-content">
+        <div class="about-web-introduction-content" v-for="i in confRef.words.about.webContent">{{ i }}</div>
+      </div>
+
+      <div>
+        <div id="about-link-box">
+          <a id="about-link" href="https://github.com/QQKdeGit/QQKdeWebsite">
+            <font-awesome-icon icon="fa-brands fa-github" style="margin-right: 6px"/>QQKdeWebsite
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -58,6 +81,7 @@ export default {
   padding-top: 82px;
   transition: color 0.35s, background 0.2s;
   user-select: none;
+
   text-align: center;
 }
 
@@ -66,6 +90,7 @@ export default {
   font-size: 32px;
   font-weight: 600;
   margin-top: 42px;
+  display: inline-block;
   color: var(--text-title-color);
 }
 
@@ -75,6 +100,7 @@ export default {
   height: 4px;
   border-radius: 2px;
   margin: 12px auto 0;
+  display: inline-block;
 }
 
 #about-me-bar {
@@ -85,12 +111,18 @@ export default {
   background: var(--theme-color-linear-gradient2);
 }
 
-#about-me-content,
-#about-web-content {
+#about-me-content {
   font-size: 15px;
-  margin: 32px auto 0;
-  display: inline-block;
   color: var(--text-content-color);
+  margin-bottom: 32px;
+
+  display: flex;
+  justify-content: center;
+}
+
+#about-web-content {
+  color: var(--text-content-color);
+  display: inline-block;
 }
 
 #about-me-image,
@@ -110,17 +142,32 @@ export default {
   height: 8px;
   min-width: 8px;
   min-height: 8px;
+
   border-radius: 50%;
   background: var(--theme-color-linear-gradient);
   display: inline-block;
   margin-right: 8px;
 }
 
-.about-me-introduction-content,
-.about-web-introduction-content {
+.about-me-introduction-content {
   text-align: left;
-  margin: 20px;
+  margin-top: 20px;
 }
 
+.about-web-introduction-content {
+  font-size: 15px;
+  margin-top: 20px;
+}
 
+#about-link-box {
+  margin-top: 20px;
+  display: inline-block;
+}
+
+#about-link {
+  font-size: 15px;
+  color: var(--text-content-color);
+  padding: 24px 32px;
+  text-decoration: none;
+}
 </style>
