@@ -2,6 +2,7 @@
 import NavigatorBar  from "./NavigatorBar.vue";
 import TopBackground from "./TopBackground.vue";
 import About         from "./About.vue";
+import Education     from "./Education.vue";
 </script>
 
 <template>
@@ -12,7 +13,9 @@ import About         from "./About.vue";
 
     <About/>
 
-    <div style="width: 100%; height: 100vh; background: var(--background-interval-color)" id="education"></div>
+    <Education/>
+
+
   </div>
 </template>
 

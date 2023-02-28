@@ -31,27 +31,19 @@ export interface LanguageObject {
 
     webTitle: string;
     webContent: Array<string>;
+  },
+
+  education: {
+    title: string;
   }
 }
 
 export const Chinese: LanguageObject = {
   navigator_bar: [
-    {
-      name: '首页',
-      id: 'top-background',
-    },
-    {
-      name: '关于',
-      id: 'about',
-    },
-    {
-      name: '教育',
-      id: 'education',
-    },
-    {
-      name: '联系',
-      id: 'contact',
-    },
+    { name: '首页', id: 'top-background' },
+    { name: '关于', id: 'about' },
+    { name: '教育', id: 'education' },
+    { name: '联系', id: 'contact' },
   ],
 
   top_background: {
@@ -76,33 +68,25 @@ export const Chinese: LanguageObject = {
     webTitle: '关于网站',
     webContent: [
       "这是一个基于 Vue3 + Vite + TypeScript 的个人网站",
-      "并没有使用任何UI组件库（除了一些图标）",
       "网站还提供了夜间模式和本地化的功能",
+      "😜 但切换语言的开关暂时被我藏起来了",
       "并且已经在 Github 上开源",
       "欢迎提出任何 issue 和 star",
 
     ]
+  },
+
+  education: {
+    title: '教育经历',
   }
 }
 
 export const English: LanguageObject = {
   navigator_bar: [
-    {
-      name: 'Home',
-      id: 'top-background',
-    },
-    {
-      name: 'About',
-      id: 'about',
-    },
-    {
-      name: 'Education',
-      id: 'education',
-    },
-    {
-      name: 'Contact',
-      id: 'contact',
-    },
+    { name: 'Home', id: 'top-background' },
+    { name: 'About',  id: 'about' },
+    { name: 'Education', id: 'education' },
+    { name: 'Contact', id: 'contact' },
   ],
 
   top_background: {
@@ -127,10 +111,14 @@ export const English: LanguageObject = {
     webTitle: 'About Website',
     webContent: [
       "This is a personal website based on Vue3 + Vite + TypeScript",
-      "No UI component library is used (except for some icons)",
       "The website also provides night mode and localization",
+      "😜 But the switch to change language is hidden for now",
       "And it has been open sourced on Github",
       "Any issues and stars are appreciated",
     ]
+  },
+
+  education: {
+    title: 'Education',
   }
 }
