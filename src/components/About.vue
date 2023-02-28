@@ -13,10 +13,10 @@ onMounted(() => {
 
   ScrollReveal().reveal('.about-me-introduction-content', {distance: '60px', origin: 'right', duration: 2000, delay: 500, interval: 80})
 
-  ScrollReveal().reveal('#about-web, #about-web-bar', {distance: '60px', origin: 'left', duration: 2000, delay: 800})
-  ScrollReveal().reveal('.about-web-introduction-content', {distance: '60px', origin: 'right', duration: 2000, delay: 900, interval: 80})
+  ScrollReveal().reveal('#about-web, #about-web-bar', {distance: '60px', origin: 'left', duration: 2000, delay: 300})
+  ScrollReveal().reveal('.about-web-introduction-content', {distance: '60px', origin: 'right', duration: 2000, delay: 400, interval: 80})
 
-  ScrollReveal().reveal('#about-link-box', {distance: '60px', origin: 'right', duration: 2000, delay: 1280})
+  ScrollReveal().reveal('#about-link-box', {distance: '60px', origin: 'right', duration: 2000, delay: 880})
 })
 </script>
 
@@ -36,7 +36,7 @@ onMounted(() => {
           <p id="about-me-introduction">{{ confRef.words.about.meIntroduction }}</p>
           <div class="about-me-introduction-content" v-for="i in confRef.words.about.meContent">
             <div class="about-me-introduction-content-row">
-              <div class="about-me-introduction-content-icon"></div>
+              <div class="about-me-introduction-content-dot"></div>
               <span>{{ i }}</span>
             </div>
           </div>
@@ -76,6 +76,7 @@ export default {
 #about {
   width: 100%;
   height: calc(100vh - 82px);
+  min-height: 900px;
   background: var(--background-color);
 
   padding-top: 82px;
@@ -99,7 +100,6 @@ export default {
   width: 64px;
   height: 4px;
   border-radius: 2px;
-  margin: 12px auto 0;
   display: inline-block;
 }
 
@@ -137,7 +137,7 @@ export default {
   align-items: center;
 }
 
-.about-me-introduction-content-icon {
+.about-me-introduction-content-dot {
   width: 8px;
   height: 8px;
   min-width: 8px;

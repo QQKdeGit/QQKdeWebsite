@@ -95,12 +95,14 @@ export default {
 #top-background {
   height: 100vh;
   width: 100%;
+  min-height: 900px;
 }
 
 #top-background-sky {
   position: absolute;
   width: 100%;
   height: 100%;
+  min-height: 900px;
 
   background: linear-gradient(180deg, #000023, #0f133d, #151b6b, #2064af, #2F80ED, #56CCF2);
   background-size: 100% 300%;
@@ -156,7 +158,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 82px);
   padding-top: 82px;
   user-select: none;
 
@@ -185,7 +187,7 @@ export default {
 #top-background-title {
   font-size: 72px;
   font-weight: 700;
-  margin-top: 32px;
+  margin-top: 0.5em;
   -webkit-text-fill-color: transparent;
 }
 
@@ -203,7 +205,7 @@ export default {
 .top-background-subtitle {
   font-size: 24px;
   font-weight: 400;
-  margin-top: 8px;
+  margin-top: 0.33em;
   color: #ffffffe0;
   letter-spacing: 0.05em;
 }
