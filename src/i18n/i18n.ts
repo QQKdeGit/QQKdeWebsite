@@ -40,6 +40,15 @@ export interface LanguageObject {
       time: string;
       introduction: string;
     }>,
+  },
+
+  contact: {
+    title: string;
+  },
+
+  mobile_notice: {
+    title: string;
+    content: Array<string>;
   }
 }
 
@@ -106,6 +115,19 @@ export const Chinese: LanguageObject = {
       }
     ],
   },
+
+  contact: {
+    title: '联系方式',
+  },
+
+  mobile_notice: {
+    title: '😲',
+    content: [
+      '看起来你似乎用了移动设备来访问本网站',
+      '但是我还没有做移动端的适配 😞',
+      '不过你可以查看我的开发进度',
+    ]
+  },
 }
 
 export const English: LanguageObject = {
@@ -169,5 +191,19 @@ export const English: LanguageObject = {
         introduction: "Beijing University of Posts and Telecommunications is a key university directly under the Ministry of Education, jointly built by the Ministry of Industry and Information Technology, and the first batch of \"211 Project\" construction universities in the country. It is a multi-disciplinary, research-oriented university with information technology as its characteristic, engineering as its main body, and the coordinated development of science, engineering, management and literature. It is an important training base for information technology talents in our country. In 2017, the \"Information Network Science and Technology Discipline Group\" and the \"Computer Science and Network."
       },
     ],
-  }
+  },
+
+  contact: {
+    title: 'Contact',
+  },
+
+  mobile_notice: {
+    title: '😲',
+    content: [
+      'It seems that you are using',
+      'a mobile phone to visit this website',
+      'But I haven\'t adapted it yet 😞',
+      'You can view my development progress on',
+    ]
+  },
 }

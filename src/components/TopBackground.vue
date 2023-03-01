@@ -14,12 +14,12 @@ const goElementById = (id: string) => {
 }
 
 const languageSwitch = () => {
-  if (confRef.value.language === "zh-CN") {
+  if (confRef.value.language === "zh") {
     confRef.value.words    = English
-    confRef.value.language = "en-US"
+    confRef.value.language = "en"
   } else {
     confRef.value.words    = Chinese
-    confRef.value.language = "zh-CN"
+    confRef.value.language = "zh"
   }
 }
 
@@ -198,7 +198,7 @@ export default {
 }
 
 #top-background-title[data-theme="dark"] {
-  background: var(--theme-color-linear-gradient);
+  background: linear-gradient(135deg, #1488CC, #45A6F7, #6dd0fa, #8dc6f6);
   -webkit-background-clip: text;
 }
 
