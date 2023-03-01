@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import MainPage           from './components/MainPage.vue'
+import MobileNotice       from './components/MobileNotice.vue'
 import { ref } from "vue";
-import { configuration }  from "./types/configuration";
-import { Chinese }        from "./i18n/i18n";
+import { configuration }    from "./types/configuration";
+import { Chinese, English } from "./i18n/i18n";
 
 const confRef = ref(configuration)
 
@@ -12,19 +13,27 @@ const themeInit = () => {
   if (localTheme === null) {
     let localHour = new Date().getHours()
     localStorage.setItem("theme", localHour >= 6 && localHour < 18? "light" : "dark")
+
+    console.log(localHour)
   }
   else confRef.value.theme = localTheme
+
+
+
 
   document.documentElement.setAttribute("data-theme", confRef.value.theme)
 }
 
 const languageInit = () => {
-  let localLanguage = localStorage.getItem("language")
-
-  if (localLanguage === null) localStorage.setItem("language", "zh-CN")
-  else confRef.value.language = localLanguage
-
-  if (confRef.value.language === "zh-CN") confRef.value.words = Chinese
+  confRef.value.language = navigator.language.substring(0, 2)
+  switch (confRef.value.language) {
+    case "zh":
+      confRef.value.words = Chinese
+      break
+    case "en":
+      confRef.value.words = English
+      break
+  }
 }
 
 const timeInit = () => {
@@ -41,8 +50,8 @@ timeInit()
 </script>
 
 <template>
-  <MainPage/>
-
+  <MainPage v-if="!confRef.isMobile"/>
+  <MobileNotice v-else/>
 </template>
 
 <style>
@@ -56,8 +65,6 @@ timeInit()
 
   --theme-color-active: #9AD7FF;
   --theme-color: #45A6F7;
-  --theme-color-linear-gradient: linear-gradient(135deg, #1488CC, #45A6F7, #6dd0fa, #8dc6f6);
-  --theme-color-linear-gradient2: linear-gradient(135deg, #ef713b, #f59059, #facf4f, #ffe259);
 }
 
 :root[data-theme="light"] {
@@ -68,6 +75,8 @@ timeInit()
   --text-content-color: #444444;
   --shadow-color: #eeeeee;
   --navigator-bar-link-background-color: rgba(0, 0, 0, 0.05);
+  --theme-color-linear-gradient: linear-gradient(135deg, #1488CC, #45A6F7, #6dd0fa, #8dc6f6);
+  --theme-color-linear-gradient2: linear-gradient(135deg, #ef713b, #f59059, #facf4f, #ffe259);
 }
 
 :root[data-theme="dark"] {
@@ -78,5 +87,6 @@ timeInit()
   --text-content-color: #ffffff;
   --shadow-color: #1c1c1c;
   --navigator-bar-link-background-color: rgba(255, 255, 255, 0.1);
+  --theme-color-linear-gradient: linear-gradient(135deg, #000023, #0f133d, #151b6b, #0c3f72);
 }
 </style>

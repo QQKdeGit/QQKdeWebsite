@@ -28,7 +28,7 @@ onMounted(() => {
 
     <div style="display: flex; justify-content: center; margin-top: 48px; column-gap: 64px">
       <div id="carousel-box" style="display: inline-block">
-        <el-carousel height="480px" style="width: 640px" :interval="10000" trigger="click" @change="carouselOnChange" indicator-position="outside">
+        <el-carousel height="480px" style="width: 32vw" :interval="10000" trigger="click" @change="carouselOnChange" indicator-position="outside">
           <el-carousel-item v-for="i in confRef.schoolPictureUrls" :key="i">
             <el-image style="width: 100%; height: 100%; border-radius: 12px" :src="i" fit="cover"/>
           </el-carousel-item>
@@ -157,7 +157,7 @@ export default {
   text-indent: 2em;
   text-align: justify;
   word-break: break-all;
-  width: 40em;
+  width: 30vw;
   transition: all 0.35s;
 }
 

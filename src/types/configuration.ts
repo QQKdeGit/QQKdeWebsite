@@ -13,6 +13,8 @@
 import { Chinese, LanguageObject } from "../i18n/i18n";
 
 interface QQKdeConfiguration {
+  isMobile: boolean | null;
+
   theme: string;
   language: string;
   words: LanguageObject;
@@ -29,6 +31,8 @@ interface QQKdeConfiguration {
 // const confRef = ref(configuration);
 // <div :data-theme="confRef.theme"/>
 export const configuration: QQKdeConfiguration = {
+  isMobile: null,
+
   theme: "light",
   language: "zh-CN",
   words: Chinese,

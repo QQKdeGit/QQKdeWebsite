@@ -3,6 +3,9 @@ import NavigatorBar  from "./NavigatorBar.vue";
 import TopBackground from "./TopBackground.vue";
 import About         from "./About.vue";
 import Education     from "./Education.vue";
+import Contact       from "./Contact.vue";
+
+//TODO: 增加移动端适配
 </script>
 
 <template>
@@ -15,7 +18,7 @@ import Education     from "./Education.vue";
 
     <Education/>
 
-
+    <Contact/>
   </div>
 </template>
 
