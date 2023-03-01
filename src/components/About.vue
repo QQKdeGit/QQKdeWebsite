@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { configuration }  from "../types/configuration";
 import ScrollReveal       from "scrollreveal";
@@ -66,7 +66,7 @@ onMounted(() => {
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "About"
 }
