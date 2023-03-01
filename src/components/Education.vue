@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {configuration} from "../types/configuration";
-import ScrollReveal from "scrollreveal";
+import { onMounted, ref } from "vue";
+import { configuration }  from "../types/configuration";
+import ScrollReveal       from "scrollreveal";
 
 const confRef = ref(configuration)
 
@@ -11,24 +11,32 @@ const carouselOnChange = (newIndex: number, oldIndex: number) => {
 }
 
 onMounted(() => {
-  ScrollReveal().reveal('#education-title, #education-title-bar', {distance: '60px', origin: 'left', duration: 2000, delay: 300})
+  ScrollReveal().reveal('#education-title, #education-title-bar', {
+    distance: '60px',
+    origin: 'left',
+    duration: 2000,
+    delay: 300
+  })
   ScrollReveal().reveal('#carousel-box', {distance: '60px', origin: 'left', duration: 2000, delay: 400})
-  ScrollReveal().reveal('.education-school-list', {distance: '60px', origin: 'right', duration: 2000, delay: 400, interval: 100})
+  ScrollReveal().reveal('.education-school-list', {
+    distance: '60px',
+    origin: 'right',
+    duration: 2000,
+    delay: 400,
+    interval: 100
+  })
 })
 </script>
 
 <template>
   <div id="education">
-    <div>
-      <div id="education-title">{{ confRef.words.education.title }}</div>
-    </div>
-    <div>
-      <div id="education-title-bar"></div>
-    </div>
+    <div id="education-title">{{ confRef.words.education.title }}</div>
+    <div id="education-title-bar"></div>
 
     <div style="display: flex; justify-content: center; margin-top: 48px; column-gap: 64px">
       <div id="carousel-box" style="display: inline-block">
-        <el-carousel height="480px" style="width: 32vw" :interval="10000" trigger="click" @change="carouselOnChange" indicator-position="outside">
+        <el-carousel height="480px" style="width: 32vw" :interval="10000" trigger="click" @change="carouselOnChange"
+                     indicator-position="outside">
           <el-carousel-item v-for="i in confRef.schoolPictureUrls" :key="i">
             <el-image style="width: 100%; height: 100%; border-radius: 12px" :src="i" fit="cover"/>
           </el-carousel-item>
@@ -38,8 +46,10 @@ onMounted(() => {
       <div style="display: inline-block">
         <div class="education-school-list" v-for="(i, idx) in confRef.words.education.schoolList">
           <div class="education-school-name-box">
-              <div class="education-school-dot" :select="activeNumberRef === idx"></div>
-              <a class="education-school-link" :href="confRef.schoolUrls[idx]" :select="activeNumberRef === idx">{{ i.name }}</a>
+            <div class="education-school-dot" :select="activeNumberRef === idx"></div>
+            <a class="education-school-link" :href="confRef.schoolUrls[idx]" :select="activeNumberRef === idx">{{
+                i.name
+              }}</a>
           </div>
           <div class="education-school-content-box">
             <div class="education-school-line" :select="activeNumberRef === idx"></div>
@@ -74,7 +84,6 @@ export default {
   font-size: 32px;
   font-weight: 600;
   margin-top: 42px;
-  display: inline-block;
   color: var(--text-title-color);
 }
 

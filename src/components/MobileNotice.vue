@@ -10,7 +10,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="mobile-notice" :data-theme="confRef.theme">
+  <div id="mobile-notice">
     <img id="mobile-notice-logo" src="/QQK-LOGO.svg">
     <div id="mobile-notice-title">{{ confRef.words.mobile_notice.title }}</div>
     <div class="mobile-notice-content" v-for="i in confRef.words.mobile_notice.content">{{ i }}</div>
@@ -31,15 +31,11 @@ export default {
 
 <style scoped>
 #mobile-notice {
-  background: var(--theme-color-linear-gradient);
+  background: var(--theme-background-color-linear-gradient);
   width: 100%;
   height: 100vh;
   text-align: center;
   font-size: 15px;
-}
-
-#mobile-notice[data-theme="dark"] {
-  background: var(--theme-color-linear-gradient);
 }
 
 #mobile-notice-logo {

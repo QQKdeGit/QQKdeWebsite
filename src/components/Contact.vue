@@ -1,12 +1,38 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {configuration} from "../types/configuration";
-import ScrollReveal from "scrollreveal";
+import { onMounted, ref } from "vue";
+import { configuration }  from "../types/configuration";
+import ScrollReveal       from "scrollreveal";
 
 const confRef = ref(configuration)
 
+const urls = [
+  {
+    icon: 'fa-brands fa-github',
+    content: 'Github',
+    url: 'https://github.com/QQKdeGit',
+  },
+  {
+    icon: 'fa-brands fa-bilibili',
+    content: 'Bilibili',
+    url: 'https://space.bilibili.com/4910602',
+  },
+]
+
 onMounted(() => {
-  console.log(confRef.value.isMobile)
+  ScrollReveal().reveal('#contact-title, #contact-title-bar', {
+    distance: '60px',
+    origin: 'right',
+    duration: 2000,
+    delay: 300
+  })
+  ScrollReveal().reveal('#contact-content', {distance: '60px', origin: 'right', duration: 2000, delay: 400})
+  ScrollReveal().reveal('.contact-content-link', {
+    distance: '60px',
+    origin: 'right',
+    duration: 2000,
+    delay: 500,
+    interval: 100
+  })
 })
 </script>
 
@@ -20,7 +46,17 @@ onMounted(() => {
     </div>
 
     <div id="contact-content-box">
-      <div id="contact-content">或许我们可以一起做点什么？</div>
+      <div id="contact-content">{{ confRef.words.contact.content }}</div>
+
+      <div class="contact-content-link" style="user-select: text">
+        <font-awesome-icon icon="fa-solid fa-envelope" style='margin-right: 8px'/>
+        QQKdeBUPT@bupt.edu.cn
+      </div>
+
+      <a class="contact-content-link" v-for="i in urls" :href="i.url">
+        <font-awesome-icon :icon="i.icon" style='margin-right: 8px'/>
+        {{ i.content }}
+      </a>
     </div>
   </div>
 </template>
@@ -63,15 +99,26 @@ export default {
 
 #contact-content-box {
   width: 100%;
-  height: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #contact-content {
   font-size: 15px;
   color: var(--text-content-color);
   transition: color 0.35s;
+  margin-top: 6em;
+}
+
+.contact-content-link {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-content-color);
+  transition: color 0.35s;
+}
+
+.contact-content-link:hover {
+  color: var(--theme-color-active)
 }
 </style>

@@ -53,8 +53,8 @@ onMounted(() => {
     <!--    <span id="navigatorLogoImage"></span>-->
     <!--    <span id="navigatorLogoText" @click="goElementById('abc')">QQK</span>-->
 
-    <img id="navigatorLogoImage" :src="confRef.theme === 'light' ? '/QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'"
-         alt="logo image">
+<!--    <img id="navigatorLogoImage" :src="confRef.theme === 'light' ? '/QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'"-->
+<!--         alt="logo image">-->
 
     <div id="navigatorBarLinkBox">
       <span class="navigatorBarLink" v-for="i in confRef.words.navigator_bar" :key="i.id"

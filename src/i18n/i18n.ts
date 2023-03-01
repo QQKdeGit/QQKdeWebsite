@@ -44,6 +44,7 @@ export interface LanguageObject {
 
   contact: {
     title: string;
+    content: string;
   },
 
   mobile_notice: {
@@ -117,7 +118,8 @@ export const Chinese: LanguageObject = {
   },
 
   contact: {
-    title: '联系方式',
+    title: '与我联系',
+    content: '或许我们可以一起做点什么',
   },
 
   mobile_notice: {
@@ -161,7 +163,7 @@ export const English: LanguageObject = {
     webContent: [
       "This is a personal website based on Vue3 + Vite + TypeScript",
       "The website also provides night mode and localization",
-      "😜 But the switch to change language is hidden for now",
+      "😜 But the button to change language is hidden for now",
       "And it has been open sourced on Github",
       "Any issues and stars are appreciated",
     ]
@@ -195,6 +197,7 @@ export const English: LanguageObject = {
 
   contact: {
     title: 'Contact',
+    content: 'Maybe we can work together',
   },
 
   mobile_notice: {
