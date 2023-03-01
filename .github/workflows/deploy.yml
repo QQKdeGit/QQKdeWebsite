@@ -25,11 +25,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile --production=false
 
       - name: Build
-        run: yarn build
+        run: yarn build --base=/QQKdeWebsite
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
