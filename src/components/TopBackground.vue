@@ -58,7 +58,7 @@ onMounted(() => {
     <div id="top-background-stars" :data-theme="confRef.theme"></div>
 
     <div id="top-background-content">
-      <img id="top-background-logo" :src="confRef.theme === 'light' ? '/QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'"
+      <img id="top-background-logo" :src="confRef.theme === 'light' ? 'QQK-LOGO.svg' : 'QQK-LOGO-Plain.svg'"
            alt="top background logo">
 
       <div id="top-background-bar" :data-theme="confRef.theme"></div>

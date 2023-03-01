@@ -30,7 +30,7 @@ onMounted(() => {
     </div>
     <div id="about-me-content">
       <div style="display: flex; column-gap: 64px;">
-        <img id="about-me-image" src="/QQK-Transparent-540.png" alt="about me image">
+        <img id="about-me-image" src="QQK-Transparent-540.png" alt="about me image">
 
         <div>
           <p id="about-me-introduction">{{ confRef.words.about.meIntroduction }}</p>
