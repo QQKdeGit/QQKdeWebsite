@@ -7,6 +7,11 @@ const confRef = ref(configuration)
 
 const urls = [
   {
+    icon: 'fa-solid fa-envelope',
+    content: 'QQKdeBUPT@bupt.edu.cn',
+    url: 'mailto:QQKdeBUPT@bupt.edu.cn',
+  },
+  {
     icon: 'fa-brands fa-github',
     content: 'Github',
     url: 'https://github.com/QQKdeGit',
@@ -47,11 +52,6 @@ onMounted(() => {
 
     <div id="contact-content-box">
       <div id="contact-content">{{ confRef.words.contact.content }}</div>
-
-      <div class="contact-content-link" style="user-select: text">
-        <font-awesome-icon icon="fa-solid fa-envelope" style='margin-right: 8px'/>
-        QQKdeBUPT@bupt.edu.cn
-      </div>
 
       <a class="contact-content-link" v-for="i in urls" :href="i.url">
         <font-awesome-icon :icon="i.icon" style='margin-right: 8px'/>
