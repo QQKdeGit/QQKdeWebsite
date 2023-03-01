@@ -5,7 +5,7 @@ import ScrollReveal       from "scrollreveal";
 
 const confRef = ref(configuration)
 
-const activeNumberRef = ref(0)
+const activeNumberRef  = ref(0)
 const carouselOnChange = (newIndex: number, oldIndex: number) => {
   activeNumberRef.value = newIndex
 }
@@ -15,8 +15,13 @@ onMounted(() => {
     distance: '60px',
     origin: 'left',
     duration: 2000,
-    delay: 300
+    delay: 300,
+    beforeReveal() {
+      let educationElement = document.getElementById("education")
+      if (educationElement) educationElement.style.setProperty("opacity", "1")
+    }
   })
+
   ScrollReveal().reveal('#carousel-box', {distance: '60px', origin: 'left', duration: 2000, delay: 400})
   ScrollReveal().reveal('.education-school-list', {
     distance: '60px',
@@ -78,6 +83,7 @@ export default {
   background: var(--background-interval-color);
   transition: color 0.35s, background 0.2s;
   user-select: none;
+  opacity: 0;
 }
 
 #education-title {

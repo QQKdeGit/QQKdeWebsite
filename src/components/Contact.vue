@@ -28,8 +28,13 @@ onMounted(() => {
     distance: '60px',
     origin: 'right',
     duration: 2000,
-    delay: 300
+    delay: 300,
+    beforeReveal() {
+      let contactElement = document.getElementById('contact')
+      if (contactElement) contactElement.style.opacity = '1'
+    }
   })
+
   ScrollReveal().reveal('#contact-content', {distance: '60px', origin: 'right', duration: 2000, delay: 400})
   ScrollReveal().reveal('.contact-content-link', {
     distance: '60px',
@@ -78,6 +83,7 @@ export default {
   background: var(--background-color);
   transition: background 0.2s;
   user-select: none;
+  opacity: 0;
 }
 
 #contact-title {

@@ -6,15 +6,32 @@ import ScrollReveal       from "scrollreveal";
 const confRef = ref(configuration)
 
 onMounted(() => {
-  ScrollReveal().reveal('#about-me, #about-me-bar', {distance: '60px', origin: 'left', duration: 2000, delay: 300})
+  ScrollReveal().reveal('#about-me, #about-me-bar', {
+    distance: '60px', origin: 'left', duration: 2000, delay: 300, beforeReveal() {
+      let aboutElement = document.getElementById('about')
+      if (aboutElement) aboutElement.style.setProperty('opacity', '1')
+    }
+  })
 
   ScrollReveal().reveal('#about-me-image', {distance: '60px', origin: 'left', duration: 2000, delay: 400})
   ScrollReveal().reveal('#about-me-introduction', {distance: '60px', origin: 'right', duration: 2000, delay: 400})
 
-  ScrollReveal().reveal('.about-me-introduction-content', {distance: '60px', origin: 'right', duration: 2000, delay: 500, interval: 80})
+  ScrollReveal().reveal('.about-me-introduction-content', {
+    distance: '60px',
+    origin: 'right',
+    duration: 2000,
+    delay: 500,
+    interval: 80
+  })
 
   ScrollReveal().reveal('#about-web, #about-web-bar', {distance: '60px', origin: 'left', duration: 2000, delay: 300})
-  ScrollReveal().reveal('.about-web-introduction-content', {distance: '60px', origin: 'right', duration: 2000, delay: 400, interval: 80})
+  ScrollReveal().reveal('.about-web-introduction-content', {
+    distance: '60px',
+    origin: 'right',
+    duration: 2000,
+    delay: 400,
+    interval: 80
+  })
 
   ScrollReveal().reveal('#about-link-box', {distance: '60px', origin: 'right', duration: 2000, delay: 880})
 })
@@ -22,12 +39,9 @@ onMounted(() => {
 
 <template>
   <div id="about">
-    <div>
-      <div id="about-me">{{ confRef.words.about.meTitle }}</div>
-    </div>
-    <div>
-      <div id="about-me-bar"></div>
-    </div>
+    <div id="about-me">{{ confRef.words.about.meTitle }}</div>
+    <div id="about-me-bar"></div>
+
     <div id="about-me-content">
       <div style="display: flex; column-gap: 64px;">
         <img id="about-me-image" src="/QQK-Transparent-540.png" alt="about me image">
@@ -44,12 +58,10 @@ onMounted(() => {
       </div>
     </div>
 
-    <div>
+
       <div id="about-web">{{ confRef.words.about.webTitle }}</div>
-    </div>
-    <div>
       <div id="about-web-bar"></div>
-    </div>
+
     <div>
       <div id="about-web-content">
         <div class="about-web-introduction-content" v-for="i in confRef.words.about.webContent">{{ i }}</div>
@@ -58,7 +70,8 @@ onMounted(() => {
       <div>
         <div id="about-link-box">
           <a id="about-link" href="https://github.com/QQKdeGit/QQKdeWebsite">
-            <font-awesome-icon icon="fa-brands fa-github" style="margin-right: 6px"/>QQKdeWebsite
+            <font-awesome-icon icon="fa-brands fa-github" style="margin-right: 6px"/>
+            QQKdeWebsite
           </a>
         </div>
       </div>
@@ -84,6 +97,7 @@ export default {
   user-select: none;
 
   text-align: center;
+  opacity: 0;
 }
 
 #about-me,
@@ -91,7 +105,6 @@ export default {
   font-size: 32px;
   font-weight: 600;
   margin-top: 42px;
-  display: inline-block;
   color: var(--text-title-color);
 }
 

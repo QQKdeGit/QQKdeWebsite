@@ -25,12 +25,15 @@ const languageSwitch = () => {
 
 onMounted(() => {
   ScrollReveal().reveal('#top-background-logo', {
-    distance: '60px', origin: 'bottom', duration: 1500, delay: 200, afterReveal: () => {
+    distance: '60px', origin: 'bottom', duration: 1500, delay: 200, afterReveal() {
       let barElement = document.getElementById("top-background-bar")
       if (barElement) barElement.style.setProperty("width", "240px")
 
       let iconElement = document.getElementById("top-background-angle-down-icon")
       if (iconElement) iconElement.classList.add("top-background-angle-down-icon-animation")
+    }, beforeReveal() {
+      let contentElement = document.getElementById("top-background-content")
+      if (contentElement) contentElement.style.setProperty("opacity", "1")
     }
   })
 
@@ -165,6 +168,8 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  opacity: 0;
 }
 
 #top-background-logo {
