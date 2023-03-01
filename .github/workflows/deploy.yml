@@ -35,7 +35,7 @@ jobs:
         run: yarn install --frozen-lockfile --production=false
 
       - name: Build
-        run: yarn build --base=/QQKdeWebsite
+        run: yarn build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
