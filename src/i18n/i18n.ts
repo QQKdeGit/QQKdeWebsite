@@ -85,7 +85,7 @@ export const Chinese: LanguageObject = {
       "这是一个基于 Vue3 + Vite + TypeScript 的个人网站",
       "网站还提供了夜间模式和本地化的功能",
       "😜 但切换语言的开关暂时被我藏起来了",
-      "并且已经在 Github 上开源",
+      "并且已经在 GitHub 上开源",
       "欢迎提出任何 issue 和 star",
 
     ]
@@ -164,7 +164,7 @@ export const English: LanguageObject = {
       "This is a personal website based on Vue3 + Vite + TypeScript",
       "The website also provides night mode and localization",
       "😜 But the button to change language is hidden for now",
-      "And it has been open sourced on Github",
+      "And it has been open sourced on GitHub",
       "Any issues and stars are appreciated",
     ]
   },

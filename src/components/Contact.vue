@@ -13,7 +13,7 @@ const urls = [
   },
   {
     icon: 'fa-brands fa-github',
-    content: 'Github',
+    content: 'GitHub',
     url: 'https://github.com/QQKdeGit',
   },
   {
@@ -58,7 +58,7 @@ onMounted(() => {
     <div id="contact-content-box">
       <div id="contact-content">{{ confRef.words.contact.content }}</div>
 
-      <a class="contact-content-link" v-for="i in urls" :href="i.url">
+      <a class="contact-content-link" v-for="i in urls" :href="i.url" target="_blank">
         <font-awesome-icon :icon="i.icon" style='margin-right: 8px'/>
         {{ i.content }}
       </a>
