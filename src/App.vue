@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MainPage           from './components/MainPage.vue'
-import MobileNotice       from './components/MobileNotice.vue'
+import MainPage     from './pages/MainPage.vue'
+import MobileNotice from './components/MobileNotice.vue'
 import { ref } from "vue";
 import { configuration }    from "./types/configuration";
 import { Chinese, English } from "./i18n/i18n";
@@ -67,7 +67,7 @@ timeInit()
   --theme-color-active: #9AD7FF;
   --theme-color: #45A6F7;
 
-  --theme-color-linear-gradient: linear-gradient(135deg, #1488CC, #45A6F7, #6dd0fa, #8dc6f6);
+  --theme-color-linear-gradient: linear-gradient(135deg, #4096ff, #45A6F7, #6dd0fa, #8dc6f6);
   --theme-color-linear-gradient2: linear-gradient(135deg, #ef713b, #f59059, #facf4f, #ffe259);
 }
 
@@ -79,7 +79,7 @@ timeInit()
   --text-content-color: #444444;
   --shadow-color: #eeeeee;
   --navigator-bar-link-background-color: rgba(0, 0, 0, 0.05);
-  --theme-background-color-linear-gradient: linear-gradient(135deg, #1488CC, #45A6F7, #6dd0fa, #8dc6f6);
+  --theme-background-color-linear-gradient: linear-gradient(135deg, #4096ff, #45A6F7, #6dd0fa, #8dc6f6);
 }
 
 :root[data-theme="dark"] {

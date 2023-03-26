@@ -22,7 +22,7 @@ onMounted(() => {
     }
   })
 
-  ScrollReveal().reveal('#carousel-box', {distance: '60px', origin: 'left', duration: 2000, delay: 400})
+  ScrollReveal().reveal('#carousel', {distance: '60px', origin: 'left', duration: 2000, delay: 400})
   ScrollReveal().reveal('.education-school-list', {
     distance: '60px',
     origin: 'right',
@@ -39,16 +39,15 @@ onMounted(() => {
     <div id="education-title-bar"></div>
 
     <div style="display: flex; justify-content: center; margin-top: 48px; column-gap: 64px">
-      <div id="carousel-box" style="display: inline-block">
-        <el-carousel height="480px" style="width: 32vw" :interval="10000" trigger="click" @change="carouselOnChange"
-                     indicator-position="outside">
-          <el-carousel-item v-for="i in confRef.schoolPictureUrls" :key="i">
-            <el-image style="width: 100%; height: 100%; border-radius: 12px" :src="i" fit="cover"/>
-          </el-carousel-item>
-        </el-carousel>
-      </div>
+      <el-carousel id="carousel" height="480px" style="width: 32vw" :interval="10000" trigger="click"
+                   @change="carouselOnChange"
+                   indicator-position="outside">
+        <el-carousel-item v-for="i in confRef.schoolPictureUrls" :key="i">
+          <el-image style="width: 100%; height: 100%; border-radius: 12px" :src="i" fit="cover"/>
+        </el-carousel-item>
+      </el-carousel>
 
-      <div style="display: inline-block">
+      <div>
         <div class="education-school-list" v-for="(i, idx) in confRef.words.education.schoolList">
           <div class="education-school-name-box">
             <div class="education-school-dot" :select="activeNumberRef === idx"></div>

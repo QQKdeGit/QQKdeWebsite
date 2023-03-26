@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import NavigatorBar  from "./NavigatorBar.vue";
-import TopBackground from "./TopBackground.vue";
-import About         from "./About.vue";
-import Education     from "./Education.vue";
-import Contact       from "./Contact.vue";
+import NavigatorBar  from "../components/NavigatorBar.vue";
+import TopBackground from "../components/TopBackground.vue";
+import About         from "../components/About.vue";
+import Education     from "../components/Education.vue";
+import Contact       from "../components/Contact.vue";
 
 //TODO: 增加移动端适配
 </script>

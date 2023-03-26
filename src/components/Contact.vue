@@ -36,7 +36,7 @@ onMounted(() => {
   })
 
   ScrollReveal().reveal('#contact-content', {distance: '60px', origin: 'right', duration: 2000, delay: 400})
-  ScrollReveal().reveal('.contact-content-link', {
+  ScrollReveal().reveal('.contact-content-link-row', {
     distance: '60px',
     origin: 'right',
     duration: 2000,
@@ -48,18 +48,14 @@ onMounted(() => {
 
 <template>
   <div id="contact">
-    <div>
-      <div id="contact-title">{{ confRef.words.contact.title }}</div>
-    </div>
-    <div>
-      <div id="contact-title-bar"></div>
-    </div>
+    <div id="contact-title">{{ confRef.words.contact.title }}</div>
+    <div id="contact-title-bar"></div>
 
-    <div id="contact-content-box">
-      <div id="contact-content">{{ confRef.words.contact.content }}</div>
+    <div id="contact-content">{{ confRef.words.contact.content }}</div>
 
-      <a class="contact-content-link" v-for="i in urls" :href="i.url" target="_blank">
-        <font-awesome-icon :icon="i.icon" style='margin-right: 8px'/>
+    <div class="contact-content-link-row" v-for="i in urls">
+      <a class="contact-content-link" :href="i.url" target="_blank">
+        <font-awesome-icon :icon="i.icon" style="margin-right: 0.5em"/>
         {{ i.content }}
       </a>
     </div>
@@ -90,7 +86,6 @@ export default {
   font-size: 32px;
   font-weight: 600;
   margin-top: 42px;
-  display: inline-block;
   color: var(--text-title-color);
   transition: color 0.35s;
 }
@@ -108,17 +103,17 @@ export default {
 }
 
 #contact-content {
-  font-size: 15px;
+  /*font-size: 15px;*/
   color: var(--text-content-color);
   transition: color 0.35s;
   margin-top: 6em;
 }
 
-.contact-content-link {
+.contact-content-link-row {
   margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.contact-content-link {
   text-decoration: none;
   color: var(--text-content-color);
   transition: color 0.35s;

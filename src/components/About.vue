@@ -43,38 +43,28 @@ onMounted(() => {
     <div id="about-me-bar"></div>
 
     <div id="about-me-content">
-      <div style="display: flex; column-gap: 64px;">
-        <img id="about-me-image" src="/QQK-Transparent-540.png" alt="about me image">
+      <img id="about-me-image" src="/QQK-Transparent-540.png" alt="about me image">
 
-        <div>
-          <p id="about-me-introduction">{{ confRef.words.about.meIntroduction }}</p>
-          <div class="about-me-introduction-content" v-for="i in confRef.words.about.meContent">
-            <div class="about-me-introduction-content-row">
-              <div class="about-me-introduction-content-dot"></div>
-              <span>{{ i }}</span>
-            </div>
-          </div>
+      <div>
+        <p id="about-me-introduction">{{ confRef.words.about.meIntroduction }}</p>
+        <div class="about-me-introduction-content" v-for="i in confRef.words.about.meContent">
+          <div class="about-me-introduction-content-dot"/>
+          {{ i }}
         </div>
       </div>
     </div>
 
+    <div id="about-web">{{ confRef.words.about.webTitle }}</div>
+    <div id="about-web-bar"></div>
 
-      <div id="about-web">{{ confRef.words.about.webTitle }}</div>
-      <div id="about-web-bar"></div>
+    <div id="about-web-content">
+      <div class="about-web-introduction-content" v-for="i in confRef.words.about.webContent">{{ i }}</div>
+    </div>
 
-    <div>
-      <div id="about-web-content">
-        <div class="about-web-introduction-content" v-for="i in confRef.words.about.webContent">{{ i }}</div>
-      </div>
-
-      <div>
-        <div id="about-link-box">
-          <a id="about-link" href="https://github.com/QQKdeGit/QQKdeWebsite">
-            <font-awesome-icon icon="fa-brands fa-github" style="margin-right: 6px"/>
-            QQKdeWebsite
-          </a>
-        </div>
-      </div>
+    <div id="about-link-box">
+      <a id="about-link" href="https://github.com/QQKdeGit/QQKdeWebsite">
+        <font-awesome-icon icon="fa-brands fa-github" style="margin-right: 0.5em"/>QQKdeWebsite
+      </a>
     </div>
   </div>
 </template>
@@ -131,11 +121,11 @@ export default {
 
   display: flex;
   justify-content: center;
+  column-gap: 64px;
 }
 
 #about-web-content {
   color: var(--text-content-color);
-  display: inline-block;
 }
 
 #about-me-image,
@@ -163,6 +153,8 @@ export default {
 }
 
 .about-me-introduction-content {
+  display: flex;
+  align-items: center;
   text-align: left;
   margin-top: 20px;
 }
@@ -174,7 +166,6 @@ export default {
 
 #about-link-box {
   margin-top: 20px;
-  display: inline-block;
 }
 
 #about-link {
