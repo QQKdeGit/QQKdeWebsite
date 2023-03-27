@@ -51,9 +51,8 @@ onMounted(() => {
         <div class="education-school-list" v-for="(i, idx) in confRef.words.education.schoolList">
           <div class="education-school-name-box">
             <div class="education-school-dot" :select="activeNumberRef === idx"></div>
-            <a class="education-school-link" :href="confRef.schoolUrls[idx]" :select="activeNumberRef === idx">{{
-                i.name
-              }}</a>
+            <a class="education-school-link" :href="confRef.schoolUrls[idx]" :select="activeNumberRef === idx"
+               target="_blank">{{ i.name }}</a>
           </div>
           <div class="education-school-content-box">
             <div class="education-school-line" :select="activeNumberRef === idx"></div>
